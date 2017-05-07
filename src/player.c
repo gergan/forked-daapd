@@ -3111,13 +3111,11 @@ player_init(void)
       return -1;
     }
 
-#if defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
   /* FreeBSD will report a resolution of 1, but actually has a resolution
    * larger than an audio packet
    */
   if (timer_res.tv_nsec == 1)
     timer_res.tv_nsec = 2 * AIRTUNES_V2_STREAM_PERIOD;
-#endif
 
   // Set the tick interval for the playback timer
   interval = MAX(timer_res.tv_nsec, AIRTUNES_V2_STREAM_PERIOD);
